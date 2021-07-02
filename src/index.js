@@ -10,12 +10,19 @@ import { createStore } from "redux";
 import contactReducer from "./redux/reducers/contactReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
+import { loadState, saveState } from "./localStorage";
 
-const store = createStore(contactReducer, composeWithDevTools());
+const persistedState = loadState();
+
+const store = createStore(
+  contactReducer,
+  persistedState,
+  composeWithDevTools()
+);
+
 store.subscribe(() => {
-  localStorage["redux-store"] = JSON.stringify(store.getState());
+  saveState(store.getState());
 });
-
 ReactDOM.render(
   <Provider store={store}>
     <Router>

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
 const EditContact = () => {
-  const [name, setName] = useState();
+  const [name, setName] = useState("");
   const [lastname, setLastName] = useState("");
   const [age, setAge] = useState("");
   const [pager, setPagerNumber] = useState("");
